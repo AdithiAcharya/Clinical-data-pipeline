@@ -1,4 +1,6 @@
-# Medical Data Pipeline
+# Medical Data Pipeline - Assignment Submission
+
+> **Note**: All the source code and required files for this assignment are located in the `master` branch of this repository.
 
 A data pipeline that reads clinical JSON files, standardizes the data, validates it, and stores it in a database. Also includes a simple web dashboard for monitoring.
 
