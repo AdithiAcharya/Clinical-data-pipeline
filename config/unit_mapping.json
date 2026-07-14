@@ -1,0 +1,78 @@
+{
+    "Hemoglobin": {
+        "canonical_unit": "g/dL",
+        "variants": ["g/dl", "gm/dL", "gm/dl", "g/dL", "gm%"]
+    },
+    "WBC Count": {
+        "canonical_unit": "cells/cu.mm",
+        "variants": ["cell/cu.mm", "cells/cumm", "10^3/uL", "/cumm", "cells/cu.mm"]
+    },
+    "Platelet Count": {
+        "canonical_unit": "cells/cu.mm",
+        "variants": ["lac/cmm", "10^3/uL", "cells/cumm", "cells/cu.mm", "/cumm"]
+    },
+    "RBC Count": {
+        "canonical_unit": "Million/cu.mm",
+        "variants": ["mil/cu.mm", "mil/cu.cm", "million/cu.mm", "Million/cu.mm", "10^6/uL"]
+    },
+    "Hematocrit": {
+        "canonical_unit": "%",
+        "variants": ["%", "L/L"]
+    },
+    "MCV": {
+        "canonical_unit": "fL",
+        "variants": ["FL", "fL", "fl"]
+    },
+    "MCHC": {
+        "canonical_unit": "g/dL",
+        "variants": ["gm/dL", "g/dl", "g/dL"]
+    },
+    "MCH": {
+        "canonical_unit": "pg",
+        "variants": ["pg"]
+    },
+    "ALT (SGPT)": {
+        "canonical_unit": "U/L",
+        "variants": ["IU/L", "U/L", "u/L"]
+    },
+    "AST (SGOT)": {
+        "canonical_unit": "U/L",
+        "variants": ["IU/L", "U/L", "u/L"]
+    },
+    "Alkaline Phosphatase": {
+        "canonical_unit": "U/L",
+        "variants": ["IU/L", "U/L", "u/L"]
+    },
+    "Albumin": {
+        "canonical_unit": "g/dL",
+        "variants": ["g/dl", "gm/dL", "g/dL"]
+    },
+    "Creatinine": {
+        "canonical_unit": "mg/dL",
+        "variants": ["mg/dL", "mg/dl"]
+    },
+    "Urea": {
+        "canonical_unit": "mg/dL",
+        "variants": ["mg/dL", "mg/dl"]
+    },
+    "Sodium": {
+        "canonical_unit": "mmol/L",
+        "variants": ["mEq/L", "mmol/L", "meq/L"]
+    },
+    "Potassium": {
+        "canonical_unit": "mmol/L",
+        "variants": ["mEq/L", "mmol/L", "meq/L"]
+    },
+    "Chloride": {
+        "canonical_unit": "mmol/L",
+        "variants": ["mEq/L", "mmol/L", "meq/L"]
+    },
+    "Bilirubin Total": {
+        "canonical_unit": "mg/dL",
+        "variants": ["mg/dL", "mg/dl"]
+    },
+    "CRP": {
+        "canonical_unit": "mg/L",
+        "variants": ["mg/L", "mg/l"]
+    }
+}

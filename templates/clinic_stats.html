@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clinic Stats - Medical Pipeline</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: Arial, sans-serif; background: #f0f2f5; color: #333; }
+        .navbar {
+            background: #2c3e50;
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+        .navbar h1 { font-size: 20px; }
+        .navbar a { color: #ccc; text-decoration: none; font-size: 14px; }
+        .navbar a:hover { color: white; }
+        .container { max-width: 900px; margin: 30px auto; padding: 0 20px; }
+        .section {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+        }
+        .section h2 { font-size: 16px; margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        table { width: 100%; border-collapse: collapse; font-size: 14px; }
+        th { background: #f8f9fa; text-align: left; padding: 12px 10px; font-size: 12px; color: #666; text-transform: uppercase; }
+        td { padding: 12px 10px; border-bottom: 1px solid #f0f0f0; }
+        tr:hover td { background: #fafafa; }
+        .good { color: #2e7d32; font-weight: bold; }
+        .warn { color: #e65100; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <h1>🏥 Medical Data Pipeline</h1>
+    <a href="/">Dashboard</a>
+    <a href="/records">Records</a>
+    <a href="/flagged">Flagged</a>
+    <a href="/clinic-stats">Clinic Stats</a>
+</div>
+
+<div class="container">
+    <div class="section">
+        <h2>📊 Clinic-Level Data Quality Stats</h2>
+
+        {% if stats_by_clinic %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Source System / Clinic</th>
+                    <th>Total Records</th>
+                    <th>Flagged</th>
+                    <th>Outliers</th>
+                    <th>Missing Numeric</th>
+                    <th>Flag Rate %</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for clinic in stats_by_clinic %}
+                <tr>
+                    <td>{{ clinic.source_system or 'Unknown' }}</td>
+                    <td>{{ clinic.total_records }}</td>
+                    <td>{{ clinic.flagged_count }}</td>
+                    <td>{{ clinic.outlier_count }}</td>
+                    <td>{{ clinic.missing_numeric }}</td>
+                    <td>
+                        {% if clinic.flag_rate > 10 %}
+                            <span class="warn">{{ clinic.flag_rate }}%</span>
+                        {% else %}
+                            <span class="good">{{ clinic.flag_rate }}%</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p style="text-align:center; color:#aaa; padding: 40px;">
+            No data yet. Run the pipeline first.
+        </p>
+        {% endif %}
+    </div>
+</div>
+</body>
+</html>

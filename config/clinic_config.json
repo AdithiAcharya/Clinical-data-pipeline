@@ -1,0 +1,35 @@
+{
+    "FASTTRACK": {
+        "description": "Fasttrack clinic - standard format",
+        "record_type_field": "classifier",
+        "lab_report_key": "lab_report",
+        "discharge_summary_key": "discharge_summary",
+        "field_mappings": {
+            "lab_report": {
+                "patient_name": "data.basic_info.patient_name",
+                "age": "data.basic_info.age",
+                "gender": "data.basic_info.gender",
+                "uhid": "data.basic_info.uhid",
+                "lab_name": "data.basic_info.lab_or_hospital_name",
+                "bill_date": "data.basic_info.bill_date",
+                "report_date": "data.basic_info.reports_date",
+                "tests": "data.report_details"
+            },
+            "discharge_summary": {
+                "patient_name": "data.patientName",
+                "age": "data.age",
+                "gender": "data.gender",
+                "doctor_name": "data.doctorName",
+                "hospital_name": "data.hospitalName",
+                "hospital_address": "data.hospitalAddress",
+                "admission_date": "data.admissionDate",
+                "discharge_date": "data.dischargeDate",
+                "diagnosis": "data.diagnosis",
+                "brief_history": "data.briefHistory",
+                "ward": "data.ward",
+                "recommendations": "data.recommendations",
+                "medications": "data.dischargeMedications"
+            }
+        }
+    }
+}

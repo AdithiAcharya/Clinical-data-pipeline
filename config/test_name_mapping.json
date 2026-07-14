@@ -1,0 +1,230 @@
+{
+    "Hemoglobin": [
+        "aemoglobin",
+        "haemoglobin",
+        "hemoglobin",
+        "hgb",
+        "hb",
+        "HAEMOGLOBIN",
+        "HEMOGLOBIN",
+        "Haemoglobin",
+        "Hb",
+        "CBC (Complete Blood Count)* (Specimen : EDTA)",
+        "Haemoglobin (whole blood/photometric method)"
+    ],
+    "WBC Count": [
+        "tal WBC Count",
+        "Total WBC Count",
+        "WBC",
+        "Leucocyte Count",
+        "Total Leucocyte Count (TLC)",
+        "TOTAL LEUCOCYTE COUNT (TLC)",
+        "Total Leucocyte Count (TLC) (whole blood/impedence method)",
+        "TLC"
+    ],
+    "Hematocrit": [
+        "ematocrit HCT",
+        "HCT",
+        "PCV",
+        "Packed Cell Volume (PCV)",
+        "Hematocrit HCT"
+    ],
+    "MCV": [
+        "lean Corp Volume MCV",
+        "Mean Corpuscular Volume MCV",
+        "MCV",
+        "Mean Cell Volume (MCV)",
+        "Mean Corp Volume MCV"
+    ],
+    "MCHC": [
+        "lean Corp Hb Conc MCHC",
+        "Mean Corpuscular Hb Conc MCHC",
+        "MCHC",
+        "Mean Corpuscular Hemoglobin Concentration"
+    ],
+    "MCH": [
+        "MCH",
+        "Mean Corpuscular Hemoglobin",
+        "Mean Cell Hemoglobin"
+    ],
+    "RDW": [
+        "DW-CV",
+        "RDW-CV",
+        "RDW - CV",
+        "RDW",
+        "Red Cell Distribution Width"
+    ],
+    "Platelet Count": [
+        "atelet Count",
+        "Platelet Count",
+        "PLATELET COUNT",
+        "PLT",
+        "Platelet count",
+        "platelet count"
+    ],
+    "Neutrophils": [
+        "eutrophils",
+        "Neutrophils",
+        "NEUTROPHILS",
+        "Neutrophil",
+        "PMN"
+    ],
+    "Lymphocytes": [
+        "mphocytes",
+        "Lymphocytes",
+        "LYMPHOCYTES",
+        "Lymphocyte",
+        "Lymphs"
+    ],
+    "Eosinophils": [
+        "sinophils",
+        "Eosinophils",
+        "EOSINOPHILS",
+        "Eosinophil"
+    ],
+    "Monocytes": [
+        "onocytes",
+        "Monocytes",
+        "MONOCYTES",
+        "Monocyte"
+    ],
+    "Basophils": [
+        "sophils",
+        "Basophils",
+        "BASOPHILS",
+        "Basophil"
+    ],
+    "ALT (SGPT)": [
+        "ALANINE AMINOTRANSFERASE",
+        "ALANINE AMINOTRANSFERASE(ALT/SGPT)",
+        "ALT",
+        "SGPT",
+        "Alanine Transaminase",
+        "SGPT, ALT (Alanine Transaminase)"
+    ],
+    "AST (SGOT)": [
+        "ASPARTATE AMINOTRANSFERASE",
+        "ASPARTATE AMINOTRANSFERASE(AST/SGOT)",
+        "AST",
+        "SGOT",
+        "Aspartate Transaminase",
+        "Aspartate Transaminase (SGOT, AST)"
+    ],
+    "Alkaline Phosphatase": [
+        "ALKALINE PHOSPHATASE",
+        "ALP",
+        "Alkaline Phosphatase (ALP)",
+        "Alk Phos"
+    ],
+    "Albumin": [
+        "ALBUMIN",
+        "Albumin",
+        "albumin"
+    ],
+    "Globulin": [
+        "GLOBULIN",
+        "Globulin",
+        "Globulin (Calculated)"
+    ],
+    "Total Protein": [
+        "PROTEIN,TOTAL",
+        "PROTEIN, TOTAL",
+        "Total Protein",
+        "Total protein",
+        "Protein Total"
+    ],
+    "Sodium": [
+        "SODIUM",
+        "Sodium",
+        "Na+",
+        "Sodium (Na+)"
+    ],
+    "Potassium": [
+        "POTASSIUM",
+        "Potassium",
+        "K+",
+        "Potassium (K+)"
+    ],
+    "Chloride": [
+        "CHLORIDE",
+        "Chloride",
+        "Cl-",
+        "Chloride (CI-)"
+    ],
+    "Creatinine": [
+        "CREATININE",
+        "Creatinine",
+        "Serum Creatinine",
+        "Sr creatinine"
+    ],
+    "Urea": [
+        "UREA",
+        "Urea",
+        "Blood Urea",
+        "BUN",
+        "Blood Urea Nitrogen"
+    ],
+    "Uric Acid": [
+        "URIC ACID",
+        "Uric Acid",
+        "Urate"
+    ],
+    "Bilirubin Total": [
+        "BILIRUBIN TOTAL",
+        "Bilirubin Total",
+        "Total Bilirubin",
+        "LIVER FUNCTION TEST(LFT)"
+    ],
+    "Bilirubin Direct": [
+        "BILIRUBIN CONJUGATED(DIRECT)",
+        "Bilirubin Direct",
+        "Direct Bilirubin"
+    ],
+    "Bilirubin Indirect": [
+        "BILIRUBIN(INDIRECT)",
+        "Bilirubin Indirect",
+        "Indirect Bilirubin"
+    ],
+    "RBC Count": [
+        "RBC COUNT",
+        "Red Blood Cell Count",
+        "RBC",
+        "Red Cell Count"
+    ],
+    "MPV": [
+        "MPV",
+        "Mean Platelet Volume",
+        "MPV (Mean Platelet Volume)"
+    ],
+    "Calcium": [
+        "CALCIUM",
+        "Calcium",
+        "Serum Calcium",
+        "Ca"
+    ],
+    "Phosphorus": [
+        "PHOSPHORUS, INORGANIC",
+        "Phosphorus",
+        "Phosphorus Serum",
+        "Inorganic Phosphorus"
+    ],
+    "Amylase": [
+        "AMYLASE",
+        "Amylase"
+    ],
+    "Lipase": [
+        "LIPASE,SERUM",
+        "Lipase",
+        "Serum Lipase"
+    ],
+    "CRP": [
+        "CRP-QUANTITATIVE",
+        "CRP",
+        "C-Reactive Protein"
+    ],
+    "Widal Test": [
+        "WIDAL TEST",
+        "WIDAL TEST (SLIDE METHOD)",
+        "Widal"
+    ]
+}

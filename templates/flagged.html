@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flagged Records - Medical Pipeline</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: Arial, sans-serif; background: #f0f2f5; color: #333; }
+        .navbar {
+            background: #2c3e50;
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+        .navbar h1 { font-size: 20px; }
+        .navbar a { color: #ccc; text-decoration: none; font-size: 14px; }
+        .navbar a:hover { color: white; }
+        .container { max-width: 1200px; margin: 30px auto; padding: 0 20px; }
+        .section {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+        }
+        .section h2 { font-size: 16px; margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        table { width: 100%; border-collapse: collapse; font-size: 13px; }
+        th { background: #f8f9fa; text-align: left; padding: 10px 8px; font-size: 11px; color: #666; text-transform: uppercase; }
+        td { padding: 9px 8px; border-bottom: 1px solid #f0f0f0; }
+        tr:hover td { background: #fafafa; }
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+        .badge.outlier { background: #ffebee; color: #c62828; }
+        .badge.range { background: #fff3e0; color: #e65100; }
+        .badge.other { background: #f3e5f5; color: #6a1b9a; }
+        .alert-banner {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 5px;
+            padding: 12px 16px;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <h1>🏥 Medical Data Pipeline</h1>
+    <a href="/">Dashboard</a>
+    <a href="/records">Records</a>
+    <a href="/flagged">Flagged</a>
+    <a href="/clinic-stats">Clinic Stats</a>
+</div>
+
+<div class="container">
+    <div class="section">
+        <h2>⚠️ Flagged Records Queue</h2>
+
+        {% if flagged_records %}
+        <div class="alert-banner">
+            <strong>{{ flagged_records|length }} record(s)</strong> need review.
+            These records have values outside normal ranges or are physiologically implausible.
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Document ID</th>
+                    <th>Test Name</th>
+                    <th>Result Value</th>
+                    <th>Normal Range</th>
+                    <th>Classification</th>
+                    <th>Flag Reason</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for rec in flagged_records %}
+                <tr>
+                    <td>{{ rec.record_type }}</td>
+                    <td title="{{ rec.document_id }}">{{ rec.document_id[:25] if rec.document_id else '' }}...</td>
+                    <td>{{ rec.test_name_canonical or rec.test_name_original or '' }}</td>
+                    <td>
+                        {{ rec.result_value if rec.result_value is not none else rec.result_text or '' }}
+                        {{ rec.unit_canonical or '' }}
+                    </td>
+                    <td>
+                        {% if rec.range_low and rec.range_high %}
+                            {{ rec.range_low }}-{{ rec.range_high }}
+                        {% else %}
+                            {{ rec.range_text or 'N/A' }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if rec.is_outlier %}
+                            <span class="badge outlier">Outlier</span>
+                        {% elif rec.analytics_classification %}
+                            <span class="badge range">{{ rec.analytics_classification }}</span>
+                        {% else %}
+                            <span class="badge other">Flagged</span>
+                        {% endif %}
+                    </td>
+                    <td>{{ rec.flag_reason or 'See classification' }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        {% else %}
+        <p style="text-align:center; color:#aaa; padding: 40px;">
+            No flagged records. Run the pipeline first.
+        </p>
+        {% endif %}
+    </div>
+</div>
+</body>
+</html>

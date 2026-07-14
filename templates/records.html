@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Records - Medical Pipeline</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: Arial, sans-serif; background: #f0f2f5; color: #333; }
+        .navbar {
+            background: #2c3e50;
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+        .navbar h1 { font-size: 20px; }
+        .navbar a { color: #ccc; text-decoration: none; font-size: 14px; }
+        .navbar a:hover { color: white; }
+        .container { max-width: 1200px; margin: 30px auto; padding: 0 20px; }
+        .section {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+        }
+        .section h2 { font-size: 16px; margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        .search-bar { display: flex; gap: 10px; margin-bottom: 15px; }
+        .search-bar input {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .search-bar select {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .search-bar button {
+            padding: 8px 16px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        table { width: 100%; border-collapse: collapse; font-size: 13px; }
+        th { background: #f8f9fa; text-align: left; padding: 10px 8px; font-size: 11px; color: #666; text-transform: uppercase; }
+        td { padding: 9px 8px; border-bottom: 1px solid #f0f0f0; max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        tr:hover td { background: #fafafa; }
+        .badge {
+            display: inline-block;
+            padding: 2px 7px;
+            border-radius: 10px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+        .badge.within { background: #e8f5e9; color: #2e7d32; }
+        .badge.above { background: #fff3e0; color: #e65100; }
+        .badge.below { background: #e3f2fd; color: #1565c0; }
+        .badge.outlier { background: #ffebee; color: #c62828; }
+        .badge.invalid { background: #f3e5f5; color: #6a1b9a; }
+        .badge.flagged { background: #ffebee; color: #c62828; }
+        .pagination { display: flex; gap: 5px; margin-top: 15px; }
+        .pagination a {
+            padding: 5px 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            text-decoration: none;
+            color: #333;
+            font-size: 13px;
+        }
+        .pagination a.active { background: #3498db; color: white; border-color: #3498db; }
+        .info-text { color: #888; font-size: 13px; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <h1>🏥 Medical Data Pipeline</h1>
+    <a href="/">Dashboard</a>
+    <a href="/records">Records</a>
+    <a href="/flagged">Flagged</a>
+    <a href="/clinic-stats">Clinic Stats</a>
+</div>
+
+<div class="container">
+    <div class="section">
+        <h2>Record Inspector</h2>
+
+        <form method="GET" action="/records">
+            <div class="search-bar">
+                <input type="text" name="q" placeholder="Search by patient name, test name, or document ID..."
+                    value="{{ search_query }}">
+                <select name="type">
+                    <option value="all" {% if record_type == 'all' %}selected{% endif %}>All Types</option>
+                    <option value="lab_report" {% if record_type == 'lab_report' %}selected{% endif %}>Lab Reports</option>
+                    <option value="discharge_summary" {% if record_type == 'discharge_summary' %}selected{% endif %}>Discharge Summaries</option>
+                </select>
+                <button type="submit">Search</button>
+            </div>
+        </form>
+
+        <p class="info-text">Showing {{ records|length }} of {{ total_count }} records</p>
+
+        {% if records %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Document ID</th>
+                    <th>Patient</th>
+                    <th>Test / Medicine</th>
+                    <th>Result</th>
+                    <th>Unit</th>
+                    <th>Range</th>
+                    <th>Classification</th>
+                    <th>Norm Method</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for rec in records %}
+                <tr>
+                    <td>{{ rec.record_type }}</td>
+                    <td title="{{ rec.document_id }}">{{ rec.document_id[:20] }}...</td>
+                    <td>{{ rec.patient_name or 'Redacted' }}</td>
+                    <td title="{{ rec.test_name_original or rec.medicine }}">
+                        {{ (rec.test_name_canonical or rec.medicine or '')[:30] }}
+                    </td>
+                    <td>{{ rec.result_text or rec.dose or '' }}</td>
+                    <td>{{ rec.unit_canonical or '' }}</td>
+                    <td>
+                        {% if rec.range_low and rec.range_high %}
+                            {{ rec.range_low }}-{{ rec.range_high }}
+                        {% else %}
+                            {{ rec.range_text or '' }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if rec.analytics_classification %}
+                            {% if 'Within' in rec.analytics_classification %}
+                                <span class="badge within">{{ rec.analytics_classification }}</span>
+                            {% elif 'Above' in rec.analytics_classification %}
+                                <span class="badge above">{{ rec.analytics_classification }}</span>
+                            {% elif 'Below' in rec.analytics_classification %}
+                                <span class="badge below">{{ rec.analytics_classification }}</span>
+                            {% elif 'Outlier' in rec.analytics_classification %}
+                                <span class="badge outlier">{{ rec.analytics_classification }}</span>
+                            {% else %}
+                                <span class="badge invalid">{{ rec.analytics_classification }}</span>
+                            {% endif %}
+                        {% endif %}
+                    </td>
+                    <td>{{ rec.normalization_method or '' }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="pagination">
+            {% if page > 1 %}
+            <a href="?q={{ search_query }}&type={{ record_type }}&page={{ page - 1 }}">← Prev</a>
+            {% endif %}
+            <a class="active">{{ page }} / {{ total_pages }}</a>
+            {% if page < total_pages %}
+            <a href="?q={{ search_query }}&type={{ record_type }}&page={{ page + 1 }}">Next →</a>
+            {% endif %}
+        </div>
+
+        {% else %}
+        <p style="text-align:center; color:#aaa; padding: 40px;">
+            No records found. Run the pipeline first.
+        </p>
+        {% endif %}
+    </div>
+</div>
+</body>
+</html>
