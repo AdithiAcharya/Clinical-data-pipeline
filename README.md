@@ -1,4 +1,4 @@
-# Medical Data Pipeline - Assignment Submission
+# Medical Data Pipeline 
 
 > **Note**: All the source code and required files for this assignment are located in the `master` branch of this repository.
 
