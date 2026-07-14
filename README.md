@@ -138,12 +138,18 @@ The `sample-data` folder contains 5 JSON files provided with the assignment:
 - File 5: Lab report with vital signs and CBC
 
 ## Snippets 
-<img width="2468" height="1110" alt="image" src="https://github.com/user-attachments/assets/d33ab7c1-b001-4b73-9305-02129b1c6cb2" />
+<img width="2682" height="1166" alt="image" src="https://github.com/user-attachments/assets/22fd70fe-a7a0-42f1-b838-16faf9ea93cf" />
+
 
 
 <img width="1714" height="1438" alt="image" src="https://github.com/user-attachments/assets/796753f9-a2b1-4f8f-a2fe-ff35a0e65365" />
 
+
+
 <img width="1640" height="1394" alt="image" src="https://github.com/user-attachments/assets/f8bbcbaa-b6da-4575-9b3b-a2f3dfb008b0" />
+
+
+
 
 <img width="2844" height="602" alt="image" src="https://github.com/user-attachments/assets/adcf9b11-5271-4ebb-873c-4faa89b0af99" />
 
