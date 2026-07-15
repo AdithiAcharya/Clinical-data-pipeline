@@ -1,10 +1,3 @@
-"""
-ingestion.py - FR-1: Data Ingestion Module
-
-This module reads JSON files from a folder (simulating GCS bucket),
-does basic validation, and handles duplicates.
-"""
-
 import os
 import json
 import hashlib
