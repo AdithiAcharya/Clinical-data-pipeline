@@ -1,8 +1,3 @@
-"""
-test_validation.py - Unit tests for the validation module
-
-Run with: python -m pytest tests/ -v
-"""
 
 import sys
 import os
