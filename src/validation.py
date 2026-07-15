@@ -14,17 +14,7 @@ with open(os.path.join(CONFIG_DIR, "reference_ranges.json"), "r") as f:
 
 
 def classify_result(test_canonical, result_value, result_text, range_low, range_high):
-    """
-    FR-3.3: Classify a test result as one of:
-    - Within Range
-    - Above Range
-    - Below Range
-    - Outlier
-    - Invalid
-    - Not Evaluated (if no range info available)
-
-    Also checks for outliers (FR-3.2) using our config file ranges.
-    """
+    
     # If result is not numeric but should be
     if result_value is None:
         if result_text and result_text.upper() in ["POSITIVE", "NEGATIVE", "NOT DETECTED", "ABSENT"]:
@@ -78,14 +68,7 @@ def classify_result(test_canonical, result_value, result_text, range_low, range_
 
 
 def validate_row(row):
-    """
-    Run all validations on a single standardized row.
-    Adds:
-    - analytics_classification
-    - is_outlier
-    - is_flagged
-    - flag_reason
-    """
+    
     test_canonical = row.get("test_name_canonical", "")
     result_value = row.get("result_value")
     result_text = row.get("result_text", "")
@@ -131,10 +114,7 @@ def validate_row(row):
 
 
 def validate_records(rows):
-    """
-    Run validation on all rows.
-    Returns validated rows and a list of flagged rows.
-    """
+    
     validated = []
     flagged = []
 
