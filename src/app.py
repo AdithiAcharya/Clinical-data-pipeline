@@ -1,11 +1,4 @@
 """
-app.py - FR-5: Operational Dashboard (Web UI)
-
-A simple Flask web app showing:
-- Pipeline run summary (FR-5.1)
-- Flagged records queue (FR-5.3)
-- Record inspector (FR-5.2)
-- Clinic-level stats (FR-5.4)
 
 Run with:
     python src/app.py
