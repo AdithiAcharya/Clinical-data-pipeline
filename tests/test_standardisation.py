@@ -1,8 +1,4 @@
-"""
-test_standardisation.py - Unit tests for the standardisation module
 
-Run with: python -m pytest tests/ -v
-"""
 
 import sys
 import os
