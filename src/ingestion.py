@@ -13,10 +13,7 @@ logger = logging.getLogger(__name__)
 
 
 def load_json_file(filepath):
-    """
-    Try to load a JSON file. If it fails, log the error and return None.
-    This handles malformed JSON gracefully (FR-1).
-    """
+    
     try:
         with open(filepath, "r", encoding="utf-8") as f:
             data = json.load(f)
