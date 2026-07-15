@@ -1,12 +1,4 @@
-"""
-validation.py - FR-3: Validation and Analytics Flags Module
 
-Handles:
-- FR-3.1: Range validation (check if result is in normal range)
-- FR-3.2: Outlier detection (extreme physiologically implausible values)
-- FR-3.3: Analytics classification (Within Range, Above Range, Below Range, Outlier, Invalid)
-- FR-3.4: Incorrect value flagging (non-numeric where numeric expected)
-"""
 
 import json
 import os
