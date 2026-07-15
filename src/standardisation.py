@@ -1,14 +1,4 @@
-"""
-standardisation.py - FR-2: Data Standardisation Module
 
-Handles:
-- FR-2.1: Test name normalization (fuzzy matching)
-- FR-2.2: Fixed column schema for each test
-- FR-2.3: Numeric conversion from text
-- FR-2.4: Unit harmonization
-- FR-2.5: Demographic normalization (age, gender, dates)
-- FR-2.6: Medicine name mapping
-"""
 
 import json
 import re
