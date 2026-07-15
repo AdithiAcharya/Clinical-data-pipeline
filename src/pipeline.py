@@ -1,13 +1,3 @@
-"""
-pipeline.py - Main Pipeline Runner
-
-Ties together ingestion, standardization, validation, and DB loading.
-Run this script to process all JSON files.
-
-Usage:
-    python src/pipeline.py
-    python src/pipeline.py --folder sample-data
-"""
 
 import os
 import sys
