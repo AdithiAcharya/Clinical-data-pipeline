@@ -1,9 +1,4 @@
-"""
-db_loader.py - FR-4: Database Loading Module
 
-Loads standardized, validated records into SQLite.
-Idempotent - running again won't create duplicate rows.
-"""
 
 import sqlite3
 import logging
