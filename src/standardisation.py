@@ -341,10 +341,6 @@ def standardize_discharge_summary(ds_data, trace_id, document_id, meta):
 
 
 def parse_range(range_str):
-    """
-    Try to extract low and high from a range string like '4000-10000' or '< 50'.
-    Returns (low, high) as floats or None if not parseable.
-    """
     if not range_str:
         return None, None
 
