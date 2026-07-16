@@ -23,22 +23,16 @@ TEST_NAME_MAPPING = load_config("test_name_mapping.json")
 UNIT_MAPPING = load_config("unit_mapping.json")
 MEDICINE_MAPPING = load_config("medicine_mapping.json")
 
-# Build a reverse lookup: variant -> canonical
-# e.g. "aemoglobin" -> "Hemoglobin"
+# Build a reverse lookup:
 _REVERSE_NAME_MAP = {}
 for canonical, variants in TEST_NAME_MAPPING.items():
     for v in variants:
         _REVERSE_NAME_MAP[v.lower().strip()] = canonical
 
 
-# ----- FR-2.1: Test Name Normalization -----
+# ----- Normalization -----
 
 def normalize_test_name(raw_name, confidence_threshold=0.7):
-    """
-    Map a raw test name to the canonical name.
-    First tries exact match, then fuzzy match.
-    Returns (canonical_name, method, confidence)
-    """
     if not raw_name:
         return raw_name, "none", 0.0
 
@@ -64,18 +58,9 @@ def normalize_test_name(raw_name, confidence_threshold=0.7):
     return clean, "none", 0.0
 
 
-# ----- FR-2.3: Numeric Conversion -----
+# ----- Numeric Conversion -----
 
 def extract_numeric(value_str):
-    """
-    Extract a numeric value from a string like:
-    - "12.0 g/dL" -> 12.0
-    - "4,290 cells" -> 4290.0
-    - "1:40" -> None (can't convert ratio to number simply)
-    - "NEGATIVE" -> None
-    - "< 50" -> 50.0
-    - "> 60" -> 60.0
-    """
     if value_str is None or value_str == "":
         return None, str(value_str)
 
@@ -105,16 +90,13 @@ def extract_numeric(value_str):
     return None, text
 
 
-# ----- FR-2.4: Unit Harmonization -----
+# ---Unit Harmonization -----
 
 def normalize_unit(test_canonical, raw_unit):
-    """
-    Standardize the unit for a given test.
-    If the test has a canonical unit in config, use that.
-    """
     if test_canonical in UNIT_MAPPING:
         canonical_unit = UNIT_MAPPING[test_canonical]["canonical_unit"]
         return canonical_unit
+        
     # If not in config, just return the raw unit cleaned up
     return raw_unit.strip() if raw_unit else ""
 
@@ -122,11 +104,6 @@ def normalize_unit(test_canonical, raw_unit):
 # ----- FR-2.5: Demographic Normalization -----
 
 def normalize_gender(raw_gender):
-    """
-    Standardize gender field.
-    M / Male / male -> Male
-    F / Female / female -> Female
-    """
     if not raw_gender:
         return None
 
@@ -141,10 +118,6 @@ def normalize_gender(raw_gender):
 
 
 def normalize_date(raw_date):
-    """
-    Try to convert various date formats to ISO 8601 (YYYY-MM-DD).
-    Handles: 09-10-2025, 07-Oct-2025, 10/Oct/2025, DD/MM/YYYY
-    """
     if not raw_date or raw_date in ["DD/MM/YYYY", "", None]:
         return None
 
@@ -169,10 +142,6 @@ def normalize_date(raw_date):
 
 
 def normalize_age(raw_age):
-    """
-    Parse age string like '33Y11M265D' or just '45' or '[AGE REDACTED]'
-    Returns age in years as a float, or None if redacted/unparseable.
-    """
     if not raw_age or "[AGE REDACTED]" in str(raw_age):
         return None
 
@@ -194,13 +163,10 @@ def normalize_age(raw_age):
         return None
 
 
-# ----- FR-2.6: Medicine Name Mapping -----
+# -----  Medicine Name Mapping -----
 
 def normalize_medicine(raw_medicine):
-    """
-    Map brand name medicines to generic equivalents.
-    Does partial matching too.
-    """
+
     if not raw_medicine:
         return raw_medicine, raw_medicine
 
@@ -225,10 +191,7 @@ def normalize_medicine(raw_medicine):
 # ----- Main Standardization Function -----
 
 def standardize_lab_report(lab_data, trace_id, document_id, meta):
-    """
-    Standardize a lab report section.
-    Returns a list of flattened rows (one per test).
-    """
+
     rows = []
 
     basic_info = lab_data.get("basic_info", {})
@@ -305,10 +268,6 @@ def standardize_lab_report(lab_data, trace_id, document_id, meta):
 
 
 def standardize_discharge_summary(ds_data, trace_id, document_id, meta):
-    """
-    Standardize a discharge summary section.
-    Returns a list of rows - one per medication (can be multiple meds).
-    """
     rows = []
 
     patient_name = ds_data.get("patientName", "")
@@ -420,11 +379,6 @@ def parse_range(range_str):
 
 
 def standardize_record(raw_record):
-    """
-    Process one full JSON record.
-    Extract response details and standardize each classifier section.
-    Returns a list of standardized rows.
-    """
     all_rows = []
 
     trace_id = raw_record.get("traceId", "")
