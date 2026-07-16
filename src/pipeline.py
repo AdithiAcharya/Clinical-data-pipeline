@@ -21,13 +21,7 @@ logger = logging.getLogger(__name__)
 
 
 def run_pipeline(input_folder, db_path=None):
-    """
-    Run the full pipeline:
-    1. Ingest JSON files
-    2. Standardize each record
-    3. Validate records
-    4. Load to DB
-    """
+
     start_time = datetime.now()
     logger.info(f"=== Pipeline started at {start_time} ===")
     logger.info(f"Reading from: {input_folder}")
