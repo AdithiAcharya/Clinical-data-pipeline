@@ -31,7 +31,7 @@ def classify_result(test_canonical, result_value, result_text, range_low, range_
         if outlier_high is not None and result_value > outlier_high:
             return "Outlier", True, False
 
-        # FR-3.1: Range validation using our reference ranges
+        
         ref_low = ref.get("low")
         ref_high = ref.get("high")
 
