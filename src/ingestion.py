@@ -28,10 +28,6 @@ def load_json_file(filepath):
 
 
 def get_all_json_files(folder_path):
-    """
-    Find all JSON files in the given folder.
-    Returns a list of file paths.
-    """
     json_files = []
     if not os.path.exists(folder_path):
         logger.error(f"Folder not found: {folder_path}")
@@ -47,12 +43,6 @@ def get_all_json_files(folder_path):
 
 
 def compute_hash(data):
-    """
-    Create a unique hash of the JSON content.
-    Used for duplicate detection (FR-1.2).
-    We hash based on document_id + trace_id if available,
-    else hash the full content.
-    """
     try:
         doc_id = data.get("data", {}).get("documentId", "")
         trace_id = data.get("traceId", "")
@@ -104,7 +94,7 @@ def ingest_files(folder_path):
 
         seen_hashes.add(record_hash)
 
-        # add source file info for audit trail (FR-4.3)
+    
         data["_source_file"] = filepath
         data["_ingested_at"] = datetime.now().isoformat()
         data["_record_hash"] = record_hash
