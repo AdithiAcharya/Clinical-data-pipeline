@@ -22,30 +22,30 @@ The pipeline reads JSON files containing lab reports and discharge summaries fro
 ├── README.md
 ├── requirements.txt
 ├── src/
-│   ├── ingestion.py        # reads JSON files, handles duplicates
-│   ├── standardisation.py  # test name, unit, and demographic normalization
-│   ├── validation.py       # range checks and outlier detection
-│   ├── db_loader.py        # loads data into SQLite
-│   ├── pipeline.py         # main runner that ties everything together
-│   └── app.py              # Flask web dashboard
+│   ├── ingestion.py        
+│   ├── standardisation.py  
+│   ├── validation.py       
+│   ├── db_loader.py        
+│   ├── pipeline.py         
+│   └── app.py              
 ├── config/
-│   ├── test_name_mapping.json      # test name variants → canonical
-│   ├── unit_mapping.json           # unit variants → canonical
-│   ├── reference_ranges.json       # normal ranges per test
-│   ├── medicine_mapping.json       # brand → generic medicine
-│   └── clinic_config.json          # per-clinic field mappings
+│   ├── test_name_mapping.json      
+│   ├── unit_mapping.json           
+│   ├── reference_ranges.json       
+│   ├── medicine_mapping.json       
+│   └── clinic_config.json          
 ├── templates/
-│   ├── index.html          # dashboard home
-│   ├── records.html        # record inspector
-│   ├── flagged.html        # flagged records queue
-│   └── clinic_stats.html   # clinic-level quality stats
+│   ├── index.html          
+│   ├── records.html        
+│   ├── flagged.html        
+│   └── clinic_stats.html   
 ├── tests/
 │   ├── test_standardisation.py
 │   └── test_validation.py
 ├── docs/
 │   ├── architecture.md
 │   └── assumptions.md
-└── sample-data/            # the 5 input JSON files
+└── sample-data/            
 ```
 
 ## Setup Instructions
