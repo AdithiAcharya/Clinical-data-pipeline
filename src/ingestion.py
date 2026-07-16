@@ -68,13 +68,6 @@ def compute_hash(data):
 
 
 def ingest_files(folder_path):
-    """
-    Main ingestion function.
-    - Reads all JSON files from folder
-    - Validates them
-    - Removes duplicates
-    - Returns list of unique, valid records
-    """
     files = get_all_json_files(folder_path)
 
     seen_hashes = set()
